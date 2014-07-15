@@ -1948,8 +1948,14 @@ Rickshaw.Graph.Legend = function(args) {
 	this.lines = [];
 
 	this.addLine = function (series) {
+		
 		var line = document.createElement('li');
 		line.className = 'line';
+
+		//var acc = document.createElement('div');
+//		swatch.className = 'accordeon';
+//
+//		line.appendChild(acc);
 
 		var swatch = document.createElement('div');
 		swatch.className = 'swatch';
@@ -1960,8 +1966,8 @@ Rickshaw.Graph.Legend = function(args) {
 		var label = document.createElement('span');
 		label.className = 'label';
 		label.innerHTML = series.name;
-
-		line.appendChild(label);
+		
+		line.appendChild(label);		
 		list.appendChild(line);
 
 		line.series = series;

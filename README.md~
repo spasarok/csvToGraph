@@ -7,7 +7,11 @@ csvToGraph is a data visualizing tool for graphing CSV data. It improves **Ricks
 
 ## File Structure
 
-+-- bin contains the compiled Java class files packaged in the DataToGraph executable jar.
-+-- src containst the raw java files in the DataToGraph package. These files construct the DataToGraph gui and read the CSV input file.
++-- bin contains the compiled Java class files packaged in the DataToGraph executable JAR.
++-- src containst the raw Java files in the DataToGraph package. These files construct the DataToGraph gui and read the CSV file.
 +-- ss contains the Rickshaw tool used to visualize the CSV data.
+
+
+
+
 
