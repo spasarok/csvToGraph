@@ -1,11 +1,11 @@
-package DataToGraph;
+package dataToGraph;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Map;
-import javax.swing.*;
-import DataToGraph.ui;
-import DataToGraph.htmlReader;
+import java.nio.file.Path;
+import dataToGraph.UI;
+import dataToGraph.HTMLReader;
 
 public class DataToGraph {
 
@@ -14,24 +14,24 @@ public class DataToGraph {
 
 	public static void main(String[] args) throws Exception {
 
-		ui Collector = new ui();
-		Collector.greeting(); // Check if user wishes to continue
-		option = Collector.getOption(options); // Choose graph tool
-		File inFile = Collector.openFile(); // Get input file
-		Collector.collectFields(); // Collect graph details
-		String outString = Collector.getOutString(); // Get output file
-		Collector.buildDir();
+		UI gui = new UI();
+		gui.greeting(); // Check if user wishes to continue
+		option = gui.getOption(options); // Choose graph tool
+		File inFile = gui.openFile(); // Get input file
+		gui.collectFields(); // Collect graph details
+		Path outPath = gui.getOutPath(); // Get output location
+		gui.buildDir(); // Build the project
 
 		// -----------------------------------------
 		// Read the CSV
 		// -----------------------------------------
 
-		ArrayList<String> base = htmlReader.parseBaseHtml();
+		ArrayList<String> base = HTMLReader.parseBaseHtml();
 
 		BufferedReader CSV = new BufferedReader(new FileReader(inFile));
 
-		Map<ArrayList<String>, double[]> data = csvParser.parseCSV(CSV,
-				Collector.getDate());
+		Map<ArrayList<String>, double[]> data =  CSVParser.parseCSV(CSV,
+				gui.getDate());
 
 		CSV.close();
 
@@ -41,17 +41,17 @@ public class DataToGraph {
 		// ////////////////////////////////////////
 
 		BufferedWriter out = new BufferedWriter(
-				new FileWriter((String) outFile));
+				new FileWriter(outPath.toString()));
 
 		if (option == 0) {
-			String json = csvParser.toJSON();
+			String json =  CSVParser.toJSON();
 			System.out.println("toJSON done");
 
 			out.write(base.get(0)); // css
 			out.write(base.get(1));
-			out.write(Collector.getTitle());// title
+			out.write(gui.getTitle());// title
 			out.write(base.get(2));
-			out.write(Collector.getAbs());// abstract
+			out.write(gui.getAbs());// abstract
 			out.write(base.get(3)); // red
 			out.write(base.get(4)); // blue
 			out.write(base.get(5));
@@ -61,23 +61,23 @@ public class DataToGraph {
 		}
 
 		else if (option == 1) {
-			String css = csvParser.categoryCSS();
+			String css =  CSVParser.categoryCSS();
 			System.out.println("categoryCSS done");
-			String json = csvParser.tofullJSON();
+			String json =  CSVParser.tofullJSON();
 			System.out.println("tofullJSON done");
-			String red = csvParser.redRadio();
+			String red =  CSVParser.redRadio();
 			System.out.println("redRadio done");
-			String blue = csvParser.blueRadio();
+			String blue =  CSVParser.blueRadio();
 			System.out.println("blueRadio done");
-			String js = csvParser.jsarrays();
+			String js =  CSVParser.jsarrays();
 			System.out.println("jsarrays done");
 
 			out.write(base.get(0));
 			out.write(css);// css
 			out.write(base.get(1));
-			out.write(Collector.getTitle());// title
+			out.write(gui.getTitle());// title
 			out.write(base.get(2));
-			out.write(Collector.getAbs());// abstract
+			out.write(gui.getAbs());// abstract
 			out.write(base.get(3));
 			out.write(red);// red
 			out.write(base.get(4));
@@ -91,7 +91,7 @@ public class DataToGraph {
 
 		out.close();
 
-		Collector.ending(outFile);
+		gui.ending(outPath.toString());
 
 	}
 }

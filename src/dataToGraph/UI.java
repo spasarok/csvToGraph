@@ -1,12 +1,14 @@
-package DataToGraph;
+package dataToGraph;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Map;
 import javax.swing.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.Files;
+import dataToGraph.Copy;
 
-public class ui {
+public class UI {
 
 	// -----------------------------------------
 	// Check if user wishes to continue
@@ -40,8 +42,8 @@ public class ui {
 	// -----------------------------------------
 	// Get the input file
 	// -----------------------------------------
-	public File inFile = null;
-	
+	public File inFile;
+
 	public File openFile() {
 		JFileChooser fileopen = new JFileChooser();
 		int ret = fileopen.showDialog(null, "Input File");
@@ -61,12 +63,14 @@ public class ui {
 	public JTextField abstractField = new JTextField(10);
 	public JTextField dateField = new JTextField(10);
 	public JTextField outputField = new JTextField(10);
-	
+
 	public String title;
 	public String abs;
 	public String dateFormat;
 	public String outName;
-	public String outFileStr = null;
+	public String outString;
+	public Path outDir;
+	public Path outPath;
 
 	public void collectFields() {
 
@@ -96,17 +100,20 @@ public class ui {
 			outName = outputField.getText();
 
 			// Create output file in same directory as input file
-			outString = inFile.getParent() + File.separator + outName + ".html";
+			outString = inFile.getParent() + File.separator + outName;
+			outDir = Paths.get(outString);
+			outPath = Paths.get(outString + "/" + outName + ".html");
+			System.out.println(outDir);
 
 			// Print to terminal
 			System.out.println("Input File: " + inFile);
 			System.out.println("Title: " + title);
 			System.out.println("Abstract: " + abs);
 			System.out.println("Date Format: " + dateFormat);
-			System.out.println("Output File: " + outFileStr);
+			System.out.println("Output Path: " + outString + "/" + outName + ".html");
 		}
 	}
-	
+
 	// -----------------------------------------
 	// Accessors
 	// -----------------------------------------
@@ -127,32 +134,106 @@ public class ui {
 		return dateFormat;
 	}
 
-	public String getOutString() {
-		return outString;
+	public Path getOutPath() {
+		return outPath;
 	}
 
 	// -----------------------------------------
-	// Make the project directory
+	// Make project directories
 	// -----------------------------------------
-	
-	final Path js = Paths.get("ss/src/js");
-	final Path css = Paths.get("ss/src/css");
-	
-	final Path outDir = new Path(outString);
-	
-	public void buildDir() {
-		FileWalker walker = new FileWalker();
-		FileWalker.mkProject(outDir);
-		Files.walkFileTree(js, walker);
-		Files.walkFileTree(css, walker);
+	public boolean makeDirs() {
+		boolean result = false;
+
+		System.out.println("Creating directory: " + outDir.toString());
+		
+		// build the project directory
+		if (!Files.exists(outDir)) {
+			try {
+				// make the project directory
+				File projDir = new File(outString);
+				projDir.mkdir();
+
+				// make the local ss directory for project dependencies
+				File ssBuilder = new File(outString + "/ss");
+				ssBuilder.mkdir();
+
+				// make the ss/examples directory
+				File exampBuilder = new File(outString + "/ss/examples");
+				exampBuilder.mkdir();
+
+				// hopefully we haven't thrown an error
+				
+				result = true;
+			} catch (Exception e) {
+				System.err.format(
+						"Unable to create one or more directories: %s%n", e);
+				return result = false;
+			}
+		}
+		
+		if(result)
+			return true;
+		else {
+			System.out.println("Directory " + outString
+					+ " already exists");
+			return false;
+		}
 	}
 	
+	// -----------------------------------------
+	// Copy dependencies to local project directory
+	// -----------------------------------------
+	public void copyDepends() throws IOException {
+
+		// copying dependencies to local project folder
+		
+	}
+
+	// -----------------------------------------
+	// Build working project directory
+	// -----------------------------------------
+	public void buildDir() throws IOException {
+	
+		// make the project directory
+		System.out.println("Making project directory");
+		boolean result = false;
+		
+		// if the project doesn't already exist, make it
+		if (!Files.exists(outDir)) {
+			try {
+				// make the project directory
+				File projDir = new File(outString);
+				projDir.mkdir();
+				result = true;
+			} catch (Exception e) {
+				System.err.format(
+						"Unable to create one or more directories: %s%n", e);
+				return;
+			}
+		
+		}
+		
+		// abort if project exists
+		if(!result) {
+			System.out.println("Directory " + outString + " already exists");
+			return;
+		}
+		
+		// copy project dependencies
+		System.out.println("Copying project dependencies");
+		
+		Copy copier = new Copy();
+		copier.copyDir(Paths.get("ss"), Paths.get(outString));
+		
+		System.out.println("Dependencies copied");
+		System.out.println("Project directory built");
+	}
 
 	// -----------------------------------------
 	// Indicate file creation successful
 	// -----------------------------------------
 	public void ending(String outputFile) {
 		JOptionPane.showMessageDialog(null, "Your file is being created at "
-				+ outString);
+				+ outString + ".html");
 	}
 }
