@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
+import java.awt.Choice;
+import java.awt.Color;
 import dataToGraph.Copy;
 
 public class UI {
@@ -29,17 +31,6 @@ public class UI {
 	}
 
 	// -----------------------------------------
-	// Select Rickshaw or econ graph tool
-	// -----------------------------------------
-	public int getOption(String[] options) {
-		JList list = new JList(options);
-		JOptionPane.showMessageDialog(null, list, "Select tool",
-				JOptionPane.PLAIN_MESSAGE);
-		// System.out.println(list.getSelectedIndices()[0]);
-		return list.getSelectedIndex();
-	}
-
-	// -----------------------------------------
 	// Get the input file
 	// -----------------------------------------
 	public File inFile;
@@ -55,6 +46,34 @@ public class UI {
 	}
 
 	// -----------------------------------------
+	// Accessors
+	// -----------------------------------------
+
+	public int getGraphType() {
+		return graphType;
+	}
+	
+	public File getInFile() {
+		return inFile;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public String getAbs() {
+		return abs;
+	}
+
+	public String getDate() {
+		return dateFormat;
+	}
+
+	public Path getOutPath() {
+		return outPath;
+	}
+	
+	// -----------------------------------------
 	// Collect graph details
 	// -----------------------------------------
 
@@ -64,6 +83,7 @@ public class UI {
 	public JTextField dateField = new JTextField(10);
 	public JTextField outputField = new JTextField(10);
 
+	public int graphType;
 	public String title;
 	public String abs;
 	public String dateFormat;
@@ -74,7 +94,15 @@ public class UI {
 
 	public void collectFields() {
 
+		Choice graphOpts = new Choice();
+		graphOpts.setBackground(Color.WHITE);
+		graphOpts.add("Rickshaw Graph");
+		graphOpts.add("Econ Graph");
+		
 		JPanel myPanel = new JPanel();
+		myPanel.add(Box.createHorizontalStrut(15)); // a spacer
+		myPanel.add(new JLabel("Graph Type:"));
+		myPanel.add(graphOpts);
 		myPanel.add(Box.createHorizontalStrut(15)); // a spacer
 		myPanel.add(new JLabel("Title:"));
 		myPanel.add(titleField);
@@ -94,6 +122,7 @@ public class UI {
 		// If the user is finished, collect their data
 		if (result == JOptionPane.OK_OPTION) {
 
+			graphType = graphOpts.getSelectedIndex();
 			title = titleField.getText();
 			abs = abstractField.getText();
 			dateFormat = dateField.getText();
@@ -112,30 +141,6 @@ public class UI {
 			System.out.println("Date Format: " + dateFormat);
 			System.out.println("Output Path: " + outString + "/" + outName + ".html");
 		}
-	}
-
-	// -----------------------------------------
-	// Accessors
-	// -----------------------------------------
-
-	public File getInFile() {
-		return inFile;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public String getAbs() {
-		return abs;
-	}
-
-	public String getDate() {
-		return dateFormat;
-	}
-
-	public Path getOutPath() {
-		return outPath;
 	}
 
 	// -----------------------------------------

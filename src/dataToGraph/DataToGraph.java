@@ -9,14 +9,14 @@ import dataToGraph.HTMLReader;
 
 public class DataToGraph {
 
-	public static int option;
+	public static int graphType;
 	public static String[] options = { "Rickshaw Graph Tool", "Econ Graph Tool" };
 
 	public static void main(String[] args) throws Exception {
 
 		UI gui = new UI();
 		gui.greeting(); // Check if user wishes to continue
-		option = gui.getOption(options); // Choose graph tool
+		graphType = gui.getGraphType(); // Choose graph tool
 		File inFile = gui.openFile(); // Get input file
 		gui.collectFields(); // Collect graph details
 		Path outPath = gui.getOutPath(); // Get output location
@@ -43,7 +43,7 @@ public class DataToGraph {
 		BufferedWriter out = new BufferedWriter(
 				new FileWriter(outPath.toString()));
 
-		if (option == 0) {
+		if (graphType == 0) {
 			String json =  CSVParser.toJSON();
 			System.out.println("toJSON done");
 
@@ -60,7 +60,7 @@ public class DataToGraph {
 			out.write(base.get(7));
 		}
 
-		else if (option == 1) {
+		else if (graphType == 1) {
 			String css =  CSVParser.categoryCSS();
 			System.out.println("categoryCSS done");
 			String json =  CSVParser.tofullJSON();
