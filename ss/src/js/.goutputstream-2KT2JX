@@ -14,7 +14,7 @@ Rickshaw.Graph.Legend = function(args) {
 	element.appendChild(toplist);
 
 	var series = graph.series
-	.map( function(s) { return s } )
+		.map( function(s) { return s } )
 
 	if (!args.naturalOrder) {
 		series = series.reverse();
@@ -23,11 +23,10 @@ Rickshaw.Graph.Legend = function(args) {
 	this.lines = [];
 
 	this.addLine = function (data, list) {
-
+		
 		// create a legend item
 		var line = document.createElement('li');
 		line.className = 'line';
-		line.style.display = 'none';
 
 		// give it a color
 		var swatch = document.createElement('div');
@@ -40,7 +39,7 @@ Rickshaw.Graph.Legend = function(args) {
 		label.className = 'label';
 		label.innerHTML = data.name;
 		line.appendChild(label);
-
+		
 		// add legend item to appropriate group		
 		list.appendChild(line);
 
@@ -61,60 +60,71 @@ Rickshaw.Graph.Legend = function(args) {
 		}
 		self.lines.push(_line);
 	};
+	
 
-	//var groups = ["ALL", "Men", "Women"];
-	var groups = $GROUPS$;
-
+	var groups = ["ALL", "Men", "Women"];
+	
 	groups.forEach( function(g) {
-
+		
 		// label the group title in an li
 		var group = document.createElement('li');
-		group.className = 'group.enabled';
-		group.id = g;
+		group.className = 'group';
+		group.id = "'" + g + "'";
 		toplist.appendChild(group);
-
+		
 		// indicate that the li is a label
 		var label = document.createElement('span');
 		label.className = 'label';
-
+		
 		// put the title content in a div
 		var content = document.createElement('div');
 		content.className = 'content';
 		content.innerHTML = g;
 		label.appendChild(content);
 		group.appendChild(label);
-
+		
 		// create list to be shown under this group title
 		list = document.createElement('ul');
-		list.className = 'list';
-		group.appendChild(list);
-		
-		// make list collapsible on click
-		group.onclick = function() {
-			
-			var list = document.querySelectorAll('#' + g + ' > ul > li');
-			
-			// if the dropdown is open, collapse is
-			if (group.className == 'group.enabled') {
-				group.className = 'group.disabled';
-				for (var i = 0; i < list.length; i++) 
-					{ list[i].style.display = "none"; }
-
-			}
-			// otherwise, open it
-			else {
-				group.className = 'group.enabled';
-				for (var i = 0; i < list.length; i++) 
-					{ list[i].style.display = "block"; }
-			} 
-		};
-		
-		// populate the list
+		list.className = g;
+	    group.appendChild(list);
+    	
+    	// populate the list
 		series.forEach( function(s) {
 			if (s.name.search(g) == 0)
 				self.addLine(s, list);
 		});
+		
+		// make group titles collapsible
+		$("'#" + g + "'").click( function() {
+			var list = group.getElementByTag('ul').getElementByTag('li');
+
+			if (g.className == 'group') {
+				g.className = 'group disable';
+				list.forEach( function (l) {
+					style.display = 'none';
+				});
+			}
+			else {
+				g.className = 'group';
+				list.forEach (function (l) {
+					style.display = 'block';
+				});
+			}
+		
+		
+		});	
 	});
+
+
+	groups.forEach()
+
+
+	
+	// make the legend collapsible
+	this.collapse = function(group) {
+		
+		
+	}
 
 	graph.onUpdate( function() {} );
 };

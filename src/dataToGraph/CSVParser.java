@@ -1,6 +1,14 @@
+/**
+ * Parses CSV file to be used for DataToGraph
+ * 
+ * @author Emircan Ulyser
+ * 
+ */
+
 package dataToGraph;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,6 +29,32 @@ public class CSVParser {
     public static Map<ArrayList<String>,double[]> data;
     public static String[] firstRowData;
     public static ArrayList<ArrayList<String>> labelSet;
+    
+    /**
+     * @param CSV
+     * @return groups The groups for dividing labels in the legend
+     * @throws IOException
+     */
+    public static ArrayList<String> getLabels(BufferedReader CSV) throws IOException {
+    	ArrayList<String> groups = new ArrayList<String>();
+    	
+    	// skip title row
+    	String current = CSV.readLine();
+    	current = CSV.readLine();
+    	
+    	while (current != null) {
+    		String group = current.substring(0, current.indexOf(","));
+
+    		// add the group if we have not already
+    		if (!groups.contains("\"" + group + "\"")) {
+    			groups.add("\"" + group + "\"");
+    		}
+    		
+    		current = CSV.readLine();
+    	}
+    	
+    	return groups;
+    }
     
 	public static String blueRadio() {
     	String out = new String();

@@ -1,3 +1,10 @@
+/**
+ * Parses base html file
+ * 
+ * @author Emircan Ulyser
+ * 
+ */
+
 package dataToGraph;
 
 import java.io.BufferedReader;
@@ -10,34 +17,35 @@ import java.util.Arrays;;
 public class HTMLReader {
 
 	public static ArrayList<String> parseBaseHtml() throws IOException {	    
-	ArrayList<String> base = new ArrayList<String>();
+		ArrayList<String> base = new ArrayList<String>();
     	
-    BufferedReader file = new BufferedReader(new FileReader(System.getProperty("user.dir")
-    		+ File.separator + "ss" + File.separator + "base.html"));	
-	String delim = "$DELIM$";
+		BufferedReader file = new BufferedReader(new FileReader(System.getProperty("user.dir")
+    		+ File.separator + "ss" + File.separator + "base.html"));
+    			
+		String delim = "$DELIM$";
     
-    String read = file.readLine();
-    String out = new String();
-	Boolean found;  
+		String read = file.readLine();
+		String out = new String();
+		boolean found;  
     
-    while (read != null){
-    	found = Arrays.asList(read.split(" ")).contains(delim);
-        if(found) {
-            base.add(out);
-            out = new String();
-        	read = file.readLine(); 
-        }
+		while (read != null){
+			found = Arrays.asList(read.split(" ")).contains(delim);
+			if(found) {
+				base.add(out);
+				out = new String();
+				read = file.readLine(); 
+			}
     	
-    	out += read;
-    	out += '\n';
-    	read = file.readLine(); 
-    }
-    base.add(out);
-    file.close();
+			out += read;
+			out += '\n';
+			read = file.readLine(); 
+		}
     
-    //System.out.println(base.get(4));
+		base.add(out);
+		file.close();
     
-    return base;
+		//System.out.println(base.get(4));
+		return base;
     }
 
 }

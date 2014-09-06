@@ -1,0 +1,18 @@
+
+
+
+
+
+lines = document.getElementsByClassName("line");
+
+
+
+
+for (var i = 0; i < lines.length; i++) { lines[i].style.display = "none"; }
+"none"
+
+
+for (var i = -0; i < lines.length; i++) { if (lines[i].innerHTML.search("Women") >= 0) { lines[i].style.display = "block"; } }
+"block"
+
+

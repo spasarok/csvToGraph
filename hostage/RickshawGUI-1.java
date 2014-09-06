@@ -1,43 +1,30 @@
-/**
- * A program to create an interactive graph from a CSV file.
- * 
- * @author Kim Spasaro
- * @version 2.0
- * 
- */
-
 package dataToGraph;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Map;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Paths;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import dataToGraph.HTMLReader;
 
 public class DataToGraph {
 
-	/****************************************
+	/***************************************
 	 *  Run GUI and Build Project
 	 ***************************************/
 
 	private int graphType;
 	private File inFile;
 	private Path projFile;
-	private ArrayList<String> groups = new ArrayList<String>();
 	public RickshawGUI gui;
 
-	/**
+	/*
 	 * Build and display the graphical user interface
 	 * @return void
 	 */
 	public RickshawGUI buildGUI() {
-		/** Set the Nimbus look and feel */
+		/* Set the Nimbus look and feel */
 		//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-		/** If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+		/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
 		 * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
 		 */
 		try {
@@ -58,6 +45,15 @@ public class DataToGraph {
 		}
 		//</editor-fold>
 
+		/* Create and display the form */
+		/*java.awt.EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				//gui = new RickshawGUI();
+				System.out.println(gui);
+				//gui.setVisible(true);
+			}
+		});*/
+
 		gui = new RickshawGUI();
 		gui.setVisible(true);
 		return gui;
@@ -65,7 +61,7 @@ public class DataToGraph {
 	}	
 
 
-	/**
+	/*
 	 * Collect gui input and build project directories
 	 * @return boolean true if user OKs, false if user cancels
 	 */
@@ -106,18 +102,12 @@ public class DataToGraph {
 
 		base = HTMLReader.parseBaseHtml();
 
-		// parse the csv file
-		System.out.println("Parsing CSV file");
 		BufferedReader CSV = new BufferedReader(new FileReader(inFile));
 		Map<ArrayList<String>, double[]> data =  CSVParser.parseCSV(CSV,
 				gui.getDate());
+
 		CSV.close();
-		
-		// group the legend labels
-		System.out.println("Gathering legend labels from CSV");
-		CSV = new BufferedReader(new FileReader(inFile));
-		groups = CSVParser.getLabels(CSV);
-		CSV.close();
+		System.out.println("CSV read");
 	}
 
 	// -----------------------------------------
@@ -125,34 +115,19 @@ public class DataToGraph {
 	// -----------------------------------------
 	public void writeDelims() throws IOException {
 
-		System.out.println("Writing input to base html file");
-		
-		// add the legend groups
-		Charset charset = StandardCharsets.UTF_8;
-		Path rickjs = Paths.get(gui.getProjPath().toString() + "/ss/rickshaw.js");
-		
-		// add legend groups to rickshaw.js
-		String content = new String(Files.readAllBytes(rickjs), charset);
-		content = content.replace("$GROUPS$", groups.toString());
-		Files.write(rickjs, content.getBytes(charset));
-		
-		// add legend groups to Rickshaw.Graph.Legend.js
-		Path rickgraph = Paths.get(gui.getProjPath().toString() + "/ss/src/js/Rickshaw.Graph.Legend.js");
-		content = new String(Files.readAllBytes(rickgraph), charset);
-		content = content.replace("$GROUPS$", groups.toString());
-		Files.write(rickgraph, content.getBytes(charset));
-		
-		
-		
-		
-		
-		BufferedWriter out = new BufferedWriter(new FileWriter(projFile.toString()));
+		BufferedWriter out = new BufferedWriter(
+				new FileWriter(projFile.toString()));
+				
+		//for (int n = 0; n < base.size(); n++){
+		//	System.out.println("" + n + "  " + base.get(n));
+		//}
+				
+				
 
-		// write input to delimiters in base html file
 		if (graphType == 0) {
-			System.out.println("Creating JSON");
 			String json =  CSVParser.toJSON();
-			
+			System.out.println("toJSON done");
+
 			out.write(base.get(0)); // css
 			out.write(base.get(1));
 			out.write(gui.getTitle());// title
@@ -164,19 +139,19 @@ public class DataToGraph {
 			out.write(json);// json
 			out.write(base.get(6));
 			out.write(base.get(7));
-			//out.write(base.get(8));
 		}
 
 		else if (graphType == 1) {
-			System.out.println("CSS");
 			String css =  CSVParser.categoryCSS();
-			System.out.println("Creating JSON");
+			System.out.println("categoryCSS done");
 			String json =  CSVParser.tofullJSON();
-			System.out.println("Creating radio buttons");
+			System.out.println("tofullJSON done");
 			String red =  CSVParser.redRadio();
+			System.out.println("redRadio done");
 			String blue =  CSVParser.blueRadio();
-			System.out.println("Creating js arrays");
+			System.out.println("blueRadio done");
 			String js =  CSVParser.jsarrays();
+			System.out.println("jsarrays done");
 
 			out.write(base.get(0));
 			out.write(css);// css
@@ -196,9 +171,6 @@ public class DataToGraph {
 		}
 
 		out.close();
-		
-		System.out.println("Output file complete");
-
 	}
 
 	// -----------------------------------------
@@ -224,12 +196,10 @@ public class DataToGraph {
 		if (project.run()) {
 			project.readCSV();
 			project.writeDelims();
-			System.out.println("Finished");
-			gui.close();
 		}
 		// Do nothing if user cancels
 		else
-			System.out.println("Graph not created");
+			System.out.println("Graph not created.");
 
 	}
 }
