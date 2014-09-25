@@ -2016,22 +2016,22 @@ Rickshaw.Graph.Legend = function(args) {
 		group.appendChild(list);
 		
 		// make list collapsible on click
-		group.onclick = function() {
+		label.onclick = function() {
 			
 			var list = document.querySelectorAll('#' + g + ' > ul > li');
 			
 			// if the dropdown is open, collapse is
-			if (group.className == 'group.enabled') {
-				group.className = 'group.disabled';
+			if (label.className == 'group.enabled') {
+				label.className = 'group.disabled';
 				for (var i = 0; i < list.length; i++) 
 					{ list[i].style.display = "none"; }
 
 			}
 			// otherwise, open it
 			else {
-				group.className = 'group.enabled';
+				label.className = 'group.enabled';
 				for (var i = 0; i < list.length; i++) 
-					{ list[i].style.display = "block"; }
+					{ list[i].style.display = "block";}
 			} 
 		};
 		

@@ -50,7 +50,7 @@
 
     <form id="side_panel">
       <h1>
-Title      </h1>
+Sample      </h1>
       <section>
 	<div id="renderer_form" class="toggler">
 	  <input type="radio" name="renderer" id="area" value="area" checked>
@@ -110,7 +110,7 @@ Title      </h1>
       <div id="slider"></div>	      
       <div id="abstract"> 
 	<p>
-Abstract
+
         </p>	
       </div>	
       
@@ -123,18 +123,10 @@ Abstract
       
     </div>
   </div>
-
+  
   <script>
     
-    // set up our data series with 50 random data points
-    /*
-    var seriesData = [ [], [], [], [], [], [], [], [], [] ];
-    var random = new Rickshaw.Fixtures.RandomData(150);
 
-    for (var i = 0; i < 150; i++) {
-	                random.addData(seriesData);
-                        }
-                        */
                         var palette = new Rickshaw.Color.Palette( { scheme: 'classic9' } );
 
                         // instantiate our graph!
@@ -428,42 +420,6 @@ color: palette.color()
 	                element: document.querySelector('form'),
 	                graph: graph
                         } );
-
-
-
-
-                        // add some data every so often
-
-                        /*
-                        var messages = [
-	                "Changed home page welcome message",
-	                "Minified JS and CSS",
-	                "Changed button color from blue to green",
-	                "Refactored SQL query to use indexed columns",
-	                "Added additional logging for debugging",
-	                "Fixed typo",
-	                "Rewrite conditional logic for clarity",
-	                "Added documentation for new methods"
-                        ];
-		        annotator.add({x:100}, messages.shift());
-		        annotator.add({x:631152000}, messages.shift());
-		        
-                        graph.render();
-                        setInterval( function() {
-	                random.addData(seriesData);
-	                graph.update();
-
-                        }, 3000 );
-                        function addAnnotation(force) {
-	                if (messages.length > 0 && (force || Math.random() >= 0.95)) {
-      annotator.add(seriesData[2][seriesData[2].length-1].x, messages.shift());
-      }
-      }
-
-      addAnnotation(true);
-      setTimeout( function() { setInterval( addAnnotation, 6000 ) }, 6000 );
-
-      */
 
 
       function getRadio(id) {

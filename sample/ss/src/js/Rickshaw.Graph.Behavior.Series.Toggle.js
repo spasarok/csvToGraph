@@ -26,7 +26,7 @@ Rickshaw.Graph.Behavior.Series.Toggle = function(args) {
                 var label = line.element.getElementsByTagName('span')[0];
                 label.onclick = function(e){
 
-                        var disableAllOtherLines = line.series.enabled;
+                        var disableAllOtherLines = line.series.disabled;
                         if ( ! disableAllOtherLines ) {
                                 for ( var i = 0; i < self.legend.lines.length; i++ ) {
                                         var l = self.legend.lines[i];

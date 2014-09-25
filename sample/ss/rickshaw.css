@@ -320,6 +320,33 @@
     border-radius: 3px;
 }
 
+#accordion .content {
+
+    margin: 0px;
+    min-width: 200px;
+    white-space: nowrap;
+    display: block;
+    font-size: 1.2em;
+    background-color: #d0d0d0;
+    border-color: #c0c0c0;
+    border-style: solid;
+    border-width: 1px;
+    font-weight: normal;
+    color: #4d4d4d;
+    line-height: normal;
+    cursor: pointer;
+    padding: 5 5 5 7px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    text-shadow: none;
+}
+
+
+
+
+
+
 
 
 
@@ -332,8 +359,6 @@ form.remit_change_form label.radiolabel
 form.remit_change_form label.fixedwidth {
     width: 180px;
 }
-
-
 
 .red input[type="radio"]:checked + label {
     color:red;
@@ -356,3 +381,5 @@ form.remit_change_form label.fixedwidth {
     width: 45%;
     border:none;
 }
+
+
