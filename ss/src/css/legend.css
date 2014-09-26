@@ -1,6 +1,6 @@
 .rickshaw_legend {
     font-family: Arial;
-    font-size: 9px;
+    font-size: 11px;
     color: #FFF;
     background: #404040;
     display: inline-block;
@@ -32,7 +32,6 @@
     display: inline;
     font-size: inherit;
     background-color: transparent;
-    color: inherit;
     font-weight: normal;
     line-height: normal;
     padding: 0px;
@@ -43,10 +42,10 @@
 }
 .rickshaw_legend .action {
     margin-right: 0.2em;
-    font-size: 10px;
+    font-size: 12px;
     opacity: 0.2;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
 }
 .rickshaw_legend .line.disabled {
     opacity: 0.4;

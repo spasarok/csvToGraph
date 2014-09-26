@@ -1,7 +1,8 @@
 #!/bin/bash   
-echo making Rickshaw files
+echo cleaning Rickshaw files
 cd ss
 make clean
+echo making Rickshaw files
 make
 cd ..
 echo compiling class files
