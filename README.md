@@ -3,7 +3,7 @@
 csvToGraph is a data visualizing tool for graphing CSV data. It improves Shutterstock's Rickshaw* tool by integrating a backend GUI and CSV parser.
 
 
-*a JavaScript toolkit for creating interactive time series graphs, developed at [Shutterstock](http://www.shutterstock.com))
+*Rickshaw is a JavaScript toolkit for creating interactive time series graphs, developed at [Shutterstock](http://www.shutterstock.com)
 
 ## File Structure
 
