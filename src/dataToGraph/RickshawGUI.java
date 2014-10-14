@@ -29,6 +29,7 @@ public class RickshawGUI extends javax.swing.JFrame {
 	public Path projFile; // path of project file, to be created
 	public Path projPath; // path of project directory, to be created
 	public String outString;
+	public String search = "blah blah blah";
 	private static final String selectDate = "Select";
 	
 	// for closing the gui
@@ -92,6 +93,15 @@ public class RickshawGUI extends javax.swing.JFrame {
 	 */
 	public String getDate() {
 		return dateFormat;
+	}
+	
+	// -----------------------------------------
+	/*
+	 * Gets selected date format
+	 * @return dateFormat The format of date values in the CSV file
+	 */
+	public String getSearch() {
+		return "blah blah blah";
 	}
 
 	// -----------------------------------------
@@ -540,12 +550,10 @@ public class RickshawGUI extends javax.swing.JFrame {
 	 * Indicate file creation successful
 	 * @return void
 	 */
-	public void ending(String outputFile) {
+	public void ending() {
 		JOptionPane.showMessageDialog(null, "Your file has been created at "
 				+ projPath.toString() + ".html");
 	}
-
-
 
 	public static void main(String args[]) {
 		/* Set the Nimbus look and feel */

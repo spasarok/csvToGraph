@@ -265,9 +265,10 @@ public class CSVParser {
           valz = data.get(curLine);
 
           out +="{\nname: \"";
-          for (int j=0; j<labelLen; j++) {
-            out += curLine.get(j) + " ";
+          for (int j=0; j<labelLen-1; j++) {
+            out += curLine.get(j) + ", ";
           }
+          out += curLine.get(labelLen-1) + " ";
           out += "\",\ndata: [ ";
           for (int j=0; j<xValz.length; j++){
 	      	if (valz == null) 
@@ -299,9 +300,10 @@ public class CSVParser {
           valz = data.get(curLine);
 
           out +="{\nname: \"";
-          for (int j=0; j<labelLen; j++) {
-              out += curLine.get(j) + " ";	
+          for (int j=0; j<labelLen-1; j++) {
+              out += curLine.get(j) + ", ";	
           }
+          out += curLine.get(labelLen-1) + " ";
           out += "\",\ndata: [ ";
           for (int j=0; j<valz.length; j++){
               out += "{ x: " + xValz[j] + ", y: " + valz[j] + "}";

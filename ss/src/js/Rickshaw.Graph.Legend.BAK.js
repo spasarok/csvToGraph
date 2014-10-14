@@ -9,11 +9,12 @@ Rickshaw.Graph.Legend = function(args) {
 
 	element.classList.add('rickshaw_legend');
 
-	var list = this.list = document.createElement('ul');
-	element.appendChild(list);
+	var toplist = this.toplist = document.createElement('ul');
+	toplist.id = 'accordion';
+	element.appendChild(toplist);
 
 	var series = graph.series
-		.map( function(s) { return s } )
+	.map( function(s) { return s } )
 
 	if (!args.naturalOrder) {
 		series = series.reverse();
@@ -21,36 +22,36 @@ Rickshaw.Graph.Legend = function(args) {
 
 	this.lines = [];
 
-	this.addLine = function (series) {
-		
+	this.addLine = function (data, list) {
+
+		// create a legend item
 		var line = document.createElement('li');
 		line.className = 'line';
+		line.style.display = 'none';
 
-		//var acc = document.createElement('div');
-//		swatch.className = 'accordeon';
-//
-//		line.appendChild(acc);
-
+		// give it a color
 		var swatch = document.createElement('div');
 		swatch.className = 'swatch';
-		swatch.style.backgroundColor = series.color;
-
+		swatch.style.backgroundColor = data.color;
 		line.appendChild(swatch);
 
+		// label that will show up in legend
 		var label = document.createElement('span');
 		label.className = 'label';
-		label.innerHTML = series.name;
-		
-		line.appendChild(label);		
+		label.innerHTML = data.name;
+		line.appendChild(label);
+
+		// add legend item to appropriate group		
 		list.appendChild(line);
 
-		line.series = series;
+		// do stuff with the corresponding data
+		line.series = data;
 
-		if (series.noLegend) {
+		if (data.noLegend) {
 			line.style.display = 'none';
 		}
 
-		var _line = { element: line, series: series };
+		var _line = { element: line, series: data };
 		if (self.shelving) {
 			self.shelving.addAnchor(_line);
 			self.shelving.updateBehaviour();
@@ -61,9 +62,59 @@ Rickshaw.Graph.Legend = function(args) {
 		self.lines.push(_line);
 	};
 
-	series.forEach( function(s) {
-		self.addLine(s);
-	} );
+	//var groups = ["ALL", "Men", "Women"];
+	var groups = $GROUPS$;
+
+	groups.forEach( function(g) {
+
+		// label the group title in an li
+		var group = document.createElement('li');
+		group.className = 'group.enabled';
+		group.id = g;
+		toplist.appendChild(group);
+
+		// indicate that the li is a label
+		var label = document.createElement('span');
+		label.className = 'label';
+
+		// put the title content in a div
+		var content = document.createElement('div');
+		content.className = 'content';
+		content.innerHTML = g;
+		label.appendChild(content);
+		group.appendChild(label);
+
+		// create list to be shown under this group title
+		list = document.createElement('ul');
+		list.className = 'list';
+		group.appendChild(list);
+		
+		// make list collapsible on click
+		label.onclick = function() {
+			
+			var list = document.querySelectorAll('#' + g + ' > ul > li');
+			
+			// if the dropdown is open, collapse is
+			if (label.className == 'group.enabled') {
+				label.className = 'group.disabled';
+				for (var i = 0; i < list.length; i++) 
+					{ list[i].style.display = "none"; }
+
+			}
+			// otherwise, open it
+			else {
+				label.className = 'group.enabled';
+				for (var i = 0; i < list.length; i++) 
+					{ list[i].style.display = "block";}
+			} 
+		};
+		
+		// populate the list
+		series.forEach( function(s) {
+			if (s.name.search(g) == 0)
+				self.addLine(s, list);
+		});
+	});
 
 	graph.onUpdate( function() {} );
 };

@@ -90,7 +90,6 @@ public class DataToGraph {
 		Builder projBuilder = new Builder(gui);
 		projBuilder.buildDir();
 
-		gui.ending(projFile.toString());
 		System.out.println("Project directory complete");
 
 		return true;
@@ -225,6 +224,7 @@ public class DataToGraph {
 			project.readCSV();
 			project.writeDelims();
 			System.out.println("Finished");
+			gui.ending();
 			gui.close();
 		}
 		// Do nothing if user cancels
