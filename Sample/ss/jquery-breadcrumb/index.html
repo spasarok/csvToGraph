@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+		<title>Breadcrumb Example Page</title>
+		<link type="text/css" href="css/jquery-breadcrumbs.css" rel="stylesheet" />	
+		<script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+		<script type="text/javascript" src="js/jquery-breadcrumbs.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("#breadcrumbs").breadcrumbs("home");
+			});
+		</script>
+		<style>
+			body
+			{
+				font-family: "Trebuchet MS", sans-serif;
+			}
+		</style>
+	</head>
+	<body>
+	
+		<ul id="breadcrumbs">
+			<li onclick="alert('you clicked the first breadcrumb');">Hello World</li>
+			<li>This breadcrumb has really long text</li>
+			<li style="font-size:16pt;">Big text isn't a problem</li>
+			<li>Looks good too!</li>
+		</ul>
+		<ul id="breadcrumbs">
+			<li onclick="alert('you clicked the first breadcrumb');">Hello World</li>
+			<li>This breadcrumb has really long text</li>
+			<li style="font-size:16pt;">Big text isn't a problem</li>
+			<li>Looks good too!</li>
+		</ul>
+
+		<br/><a href="http://code.google.com/p/jquery-breadcrumb/">http://code.google.com/p/jquery-breadcrumb/</a>
+	</body>
+</html>
+
+

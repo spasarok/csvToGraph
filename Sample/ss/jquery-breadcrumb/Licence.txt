@@ -1,0 +1,15 @@
+jquery-breadcrumb 1.0
+http://code.google.com/p/jquery-breadcrumb/
+http://phonicuk.com/
+
+Copyright 2011 Michael Biggins
+Licenced under Creative Commons Attribution 3.0 Unported (CC BY 3.0)
+http://creativecommons.org/licenses/by/3.0/
+
+Commercial use is allowed. If you've used this in a project, I'd love to hear from you!
+
+Attribution should take the form:
+
+'Uses jquery-breadcrumb from http://phonicuk.com' (where the address is a hyperlink to the page)
+
+In either a readme, about, page footer or other attribution page.
