@@ -39,6 +39,14 @@
   <script src="ss/src/js/Rickshaw.Graph.Axis.Y.js"></script>
 
   <script src="ss/examples/js/extensions.js"></script>
+  
+  	<script type="text/javascript" charset="utf-8" src="ss/src/js/jquery-2.1.1.js"></script>
+	<script src="ss/src/js/jquery.fastLiveFilter.js"></script>
+	<script>
+		$(function() {
+			$('#search_input').fastLiveFilter('#search_list');
+		});
+	</script>
 
   <style>
 $DELIM$
@@ -103,7 +111,16 @@ $DELIM$
 	<h6>Smoothing</h6>
 	<div id="smoother"></div>
       </section>
-      <section><h6>Legend</h6><div id="legend"></div></section>
+      <section><div id="legend">
+	<h6>Legend</h6>	  
+		<input id="search_input" placeholder="Type to filter">
+
+
+
+		<div class="tfclear"></div>
+
+
+      </div></section>
     </form>
 
     <div id="chart_container">		
