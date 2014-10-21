@@ -17,11 +17,11 @@ import java.nio.file.Path;
 
 public class Builder {
 
-	private RickshawGUI gui;
+	private GUI gui;
 	private Path projPath;
 	private String projPathStr;
 
-	public Builder(RickshawGUI gui) {
+	public Builder(GUI gui) {
 		this.gui = gui;
 		projPath = gui.getProjPath();
 		projPathStr = projPath.toString();

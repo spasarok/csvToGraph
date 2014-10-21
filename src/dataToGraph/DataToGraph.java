@@ -28,13 +28,13 @@ public class DataToGraph {
 	private File inFile;
 	private Path projFile;
 	private ArrayList<String> groups = new ArrayList<String>();
-	public RickshawGUI gui;
+	public GUI gui;
 
 	/**
 	 * Build and display the graphical user interface
 	 * @return void
 	 */
-	public RickshawGUI buildGUI() {
+	public GUI buildGUI() {
 		/** Set the Nimbus look and feel */
 		//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
 		/** If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -48,17 +48,17 @@ public class DataToGraph {
 				}
 			}
 		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(RickshawGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(RickshawGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(RickshawGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(RickshawGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
 		//</editor-fold>
 
-		gui = new RickshawGUI();
+		gui = new GUI();
 		gui.setVisible(true);
 		return gui;
 
@@ -74,7 +74,7 @@ public class DataToGraph {
 		System.out.println("Input done, onto project build");
 
 		// build project if user OKs
-		if (gui.getCloseOp() != RickshawGUI.APPROVE_OPTION){
+		if (gui.getCloseOp() != GUI.APPROVE_OPTION){
 			System.out.println("Build canceled");
 			return false;
 		}
@@ -207,7 +207,7 @@ public class DataToGraph {
 
 		DataToGraph project = new DataToGraph();
 
-		RickshawGUI gui = project.buildGUI();
+		GUI gui = project.buildGUI();
 
 		// Make sure we don't build files until input has been collected
 		synchronized(gui) {
