@@ -1,0 +1,146 @@
+.rickshaw_legend {
+    font-family: Arial;
+    font-size: 11px;
+    color: #d4d4d4;
+    background: #404040;
+    display: inline-block;
+    padding: 12px 5px;
+    border-radius: 2px;
+    position: relative;
+}
+.rickshaw_legend:hover {
+    z-index: 10;
+}
+.rickshaw_legend .swatch {
+    width: 10px;
+    height: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.rickshaw_legend .line {
+    clear: both;
+    line-height: 140%;
+    padding-right: 15px;
+}
+.rickshaw_legend .line .swatch {
+    display: inline-block;
+    margin-right: 3px;
+    border-radius: 2px;
+}
+.rickshaw_legend .label {
+    margin: 0;
+    white-space: nowrap;
+    display: inline;
+    font-size: inherit;
+    background-color: transparent;
+    font-weight: normal;
+    line-height: normal;
+    padding: 0px;
+    text-shadow: none;
+}
+.rickshaw_legend .action:hover {
+    opacity: 0.6;
+}
+.rickshaw_legend .action {
+    margin-right: 0.2em;
+    font-size: 12px;
+    opacity: 0.2;
+    cursor: pointer;
+    font-size: 16px;
+}
+.rickshaw_legend .line.disabled {
+    opacity: 0.4;
+}
+.rickshaw_legend ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin: 2px;
+    cursor: pointer;
+}
+.rickshaw_legend li {
+    padding: 0 0 0 2px;
+    min-width: 80px;
+    white-space: normal;
+}
+.rickshaw_legend li:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 3px;
+}
+.rickshaw_legend li:active {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+#accordion .content {
+
+    margin: 0px;
+    min-width: 200px;
+    white-space: nowrap;
+    display: block;
+    font-size: 1.2em;
+    background-color: #e0e0e0;
+    border-color: #c0c0c0;
+    border-style: solid;
+    border-width: 1px;
+    font-weight: normal;
+    color: #4d4d4d;
+    line-height: normal;
+    cursor: pointer;
+    padding: 5 5 5 7px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    text-shadow: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+form.remit_change_form label.radiolabel
+{
+    display:inline-block; /* added this */
+    width: 50px;
+}
+
+form.remit_change_form label.fixedwidth {
+    width: 180px;
+}
+
+.red input[type="radio"]:checked + label {
+    color:red;
+    font-weight: bold;
+}
+
+.blue input[type="radio"]:checked + label {
+    color:blue;
+    font-weight: bold;
+}
+
+.red{
+    float: left;
+    width: 45%;
+    border:none
+}
+
+.blue{
+    float: right;
+    width: 45%;
+    border:none;
+}
+
+
