@@ -77,7 +77,6 @@
 }
 
 #accordion .content {
-
     margin: 0px;
     min-width: 200px;
     white-space: nowrap;
@@ -91,7 +90,7 @@
     color: #4d4d4d;
     line-height: normal;
     cursor: pointer;
-    padding: 5 5 5 7px;
+    padding: 5px 5px 5px 10px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px;

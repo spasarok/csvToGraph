@@ -1,4 +1,5 @@
 .rickshaw_legend {
+	width: 100%;
     font-family: Arial;
     font-size: 11px;
     color: #d4d4d4;
@@ -28,7 +29,7 @@
 }
 .rickshaw_legend .label {
     margin: 0;
-    white-space: nowrap;
+    white-space: wrap;
     display: inline;
     font-size: inherit;
     background-color: transparent;
@@ -71,8 +72,11 @@
     border-radius: 3px;
 }
 
-#accordion .content {
+#accordion {
+	width: 100%;
+}
 
+#accordion .content {
     margin: 0px;
     min-width: 200px;
     white-space: nowrap;
@@ -86,7 +90,7 @@
     color: #4d4d4d;
     line-height: normal;
     cursor: pointer;
-    padding: 5 5 5 7px;
+    padding: 5px 5px 5px 10px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px;

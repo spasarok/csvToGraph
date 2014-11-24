@@ -1962,10 +1962,9 @@ Rickshaw.Graph.Legend = function(args) {
 		line.appendChild(swatch);
 
 		// label that will show up in legend
-		var stripFirst = data.name.indexOf(',');
 		var label = document.createElement('span');
 		label.className = 'label';
-		label.innerHTML = data.name.substring(stripFirst+1, data.name.length);
+		label.innerHTML = data.name;
 		line.appendChild(label);
 
 		// add legend item to appropriate group		

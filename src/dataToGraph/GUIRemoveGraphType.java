@@ -1,7 +1,3 @@
-/**
- * The GUI used to create a dataToGraph project
- */
-
 package dataToGraph;
 
 import java.io.*;
@@ -9,12 +5,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import javax.swing.*;
 
-
 /**
- *
- * @author Kim Spasaro
+ * The GUI used to create a dataToGraph project
+ * 
+ *  * @author Kim Spasaro
  */
-public class GUI extends javax.swing.JFrame {
+public class GUIRemoveGraphType extends javax.swing.JFrame {
 
 	public int graphType;
 	public File inFile;
@@ -35,9 +31,9 @@ public class GUI extends javax.swing.JFrame {
 
 
 	/**
-	 * Creates new GUI
+	 * Creates new RickshawGUI
 	 */
-	public GUI() {
+	public GUIRemoveGraphType() {
 		initComponents();
 
 	}
@@ -45,14 +41,6 @@ public class GUI extends javax.swing.JFrame {
 	// -----------------------------------------
 	// Accessors
 	// -----------------------------------------
-
-	/**
-	 * Gets selected graph type
-	 * @return graphType Either econ or Rickshaw graph
-	 */
-	public int getGraphType() {
-		return graphType;
-	}
 
 	// -----------------------------------------
 	/**
@@ -143,8 +131,6 @@ public class GUI extends javax.swing.JFrame {
 		scrollPane = new javax.swing.JScrollPane();
 		abstractLabel = new javax.swing.JLabel();
 		abstractTextArea = new javax.swing.JTextArea();
-		graphTypeCombo = new javax.swing.JComboBox<String>();
-		graphTypeLabel = new javax.swing.JLabel();
 		dateLabel = new javax.swing.JLabel();
 		dateCombo = new javax.swing.JComboBox<String>();
 		fileProps = new javax.swing.JPanel();
@@ -169,7 +155,7 @@ public class GUI extends javax.swing.JFrame {
 				textFieldMouseClicked(evt, titleField);
 			}
 		});
-		
+
 		// -----------------------------------------
 		// Abstract
 		// -----------------------------------------
@@ -180,17 +166,11 @@ public class GUI extends javax.swing.JFrame {
 		scrollPane.setViewportView(abstractTextArea);
 
 		// -----------------------------------------
-		// Graph type
-		// -----------------------------------------
-		graphTypeLabel.setText("Graph Type");
-		graphTypeCombo.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Rickshaw Graph", "Econ Graph" }));
-
-		// -----------------------------------------
 		// Date format
 		// -----------------------------------------
 		dateLabel.setText("Date Format");
 		dateCombo.setMaximumRowCount(20);
-		dateCombo.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { selectDate, "dd-MMMM-yy", "dd/MMMM/yy", "dd-MMMM-yyyy", "dd/MMMM/yyyy", "MMM-yy", "MMM/yy", "MMM-yyyy", "MMM/yyyy", "MM-yy", "MM/yy", "MM-yyyy", "MM/yyyy", "mmyy", "mmyyyy", "yy", "yyyy"}));
+		dateCombo.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { selectDate, "dd-MMMM-yy", "dd/MMMM/yy", "dd-MMMM-yyyy", "dd/MMMM/yyyy", "MMM-yy", "MMM/yy", "MMM-yyyy", "MMM/yyyy", "MM-yy", "MM/yy", "MM-yyyy", "MM/yyyy", "mmyy", "mmyyyy", "yy", "yyyy" }));
 
 		// -----------------------------------------
 		// Input and output fields
@@ -251,13 +231,13 @@ public class GUI extends javax.swing.JFrame {
 												.addGap(31, 31, 31)
 												.addGroup(graphPropsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 														.addGroup(graphPropsLayout.createSequentialGroup()
-																.addComponent(graphTypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+																.addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
 																.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																.addComponent(graphTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+																.addComponent(dateCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
 																.addGroup(graphPropsLayout.createSequentialGroup()
-																		.addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+																		.addComponent(dateLabel)
 																		.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																		.addComponent(dateCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))))
+																		.addComponent(dateCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))))
 																		.addComponent(scrollPane))
 																		.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 				);
@@ -267,19 +247,19 @@ public class GUI extends javax.swing.JFrame {
 						.addContainerGap()
 						.addGroup(graphPropsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
 								.addComponent(titleField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(graphTypeLabel)
-								.addComponent(graphTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(dateLabel)
+								.addComponent(dateCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
 								.addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-								.addGap(18, 18, 18)
+							
 								.addGroup(graphPropsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
 										.addComponent(dateCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
 										.addComponent(dateLabel))
 										.addGroup(graphPropsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 												.addGroup(graphPropsLayout.createSequentialGroup()
-														.addGap(37, 37, 37)
+														
 														.addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
 														.addGroup(graphPropsLayout.createSequentialGroup()
-																.addGap(49, 49, 49)
+																
 																.addComponent(abstractLabel)))
 																.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 				);
@@ -501,7 +481,6 @@ public class GUI extends javax.swing.JFrame {
 	public void collect () {
 
 		synchronized(this) {
-			graphType = graphTypeCombo.getSelectedIndex();
 			title = titleField.getText();
 			abs = abstractTextArea.getText();
 			dateFormat = (String) dateCombo.getSelectedItem();
@@ -591,8 +570,6 @@ public class GUI extends javax.swing.JFrame {
 	private javax.swing.JLabel dateLabel;
 	private javax.swing.JPanel fileProps;
 	private javax.swing.JPanel graphProps;
-	private javax.swing.JComboBox<String> graphTypeCombo;
-	private javax.swing.JLabel graphTypeLabel;
 	private javax.swing.JTextField inputField;
 	private javax.swing.JLabel inputLabel;
 	private javax.swing.JButton cancelButton;
